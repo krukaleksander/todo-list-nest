@@ -42,10 +42,13 @@ describe('AppController', () => {
       it('show list of tasks', () => {
         const MyTaskList = new ToDoList();
         MyTaskList.addNewItem('do the task');
-        expect(MyTaskList.showTaskList()).toEqual({
-          statusCode: 500,
-          msg: 'give me a name of the task',
-        });
+        expect(MyTaskList.showTaskList()).toEqual([
+          {
+            id: '1',
+            title: 'do the task',
+            isDone: false,
+          },
+        ]);
       });
     });
   });
