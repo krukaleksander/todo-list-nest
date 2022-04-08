@@ -108,5 +108,13 @@ describe('AppController', () => {
         });
       });
     });
+    describe('removeTask method', () => {
+      it('returns appropriate list of object without removed object', () => {
+        const myTaskList = new ToDoList();
+        myTaskList.addNewItem('do the task');
+        myTaskList.removeTask('1');
+        expect(myTaskList.showTaskList()).toEqual([]);
+      });
+    });
   });
 });

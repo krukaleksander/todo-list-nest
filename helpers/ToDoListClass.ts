@@ -3,6 +3,9 @@ import { IToDoItem } from 'interfaces/ToDoList';
 
 let db: IToDoItem[] = [];
 export class ToDoList {
+  removeTask(id: string) {
+    db = db.filter((task) => task.id !== id);
+  }
   editItem(id: string, newTitle: string) {
     if (newTitle.length < 1) {
       return { statusCode: 500, msg: 'give me a new name for a task' };
