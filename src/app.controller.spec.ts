@@ -112,5 +112,26 @@ describe('AppController', () => {
         expect(myTaskList.showTaskList()).toEqual([]);
       });
     });
+    describe('showDone method', () => {
+      it('returns undone tasks', () => {
+        const myTaskList = new ToDoList();
+        myTaskList.addNewItem('second task');
+        myTaskList.addNewItem('third task');
+        myTaskList.changeDoneStatus('1');
+        myTaskList.showDone(false);
+        expect(myTaskList.showTaskList()).toEqual([
+          {
+            id: '2',
+            title: 'second task',
+            isDone: false,
+          },
+          {
+            id: '3',
+            title: 'third task',
+            isDone: false,
+          },
+        ]);
+      });
+    });
   });
 });
