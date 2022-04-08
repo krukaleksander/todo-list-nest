@@ -85,5 +85,19 @@ describe('AppController', () => {
         ]);
       });
     });
+    describe('editTask method', () => {
+      it('returns appropriate list of object with editted task name', () => {
+        const myTaskList = new ToDoList();
+        myTaskList.addNewItem('do the task');
+        myTaskList.editItem('1', 'do not do the task');
+        expect(myTaskList.showTaskList()).toEqual([
+          {
+            id: '1',
+            title: 'do not do the task',
+            isDone: false,
+          },
+        ]);
+      });
+    });
   });
 });
