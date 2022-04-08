@@ -24,13 +24,15 @@ export class ToDoList {
     });
     return this;
   }
-  changeDoneStatus(id: string) {
+  changeDoneStatus(idOfElement: string) {
     db = db.map((task) => {
       const { id, title, isDone } = task;
-      if (task.id === id) return { id, title, isDone: !isDone };
-      return task;
+      if (task.id === idOfElement) {
+        return { id, title, isDone: !isDone };
+      } else {
+        return task;
+      }
     });
-    return this;
   }
   showTaskList(): IToDoItem[] {
     return db;
