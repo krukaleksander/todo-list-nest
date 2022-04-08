@@ -22,6 +22,7 @@ describe('AppController', () => {
   });
 
   describe('ToDoList', () => {
+    console.log();
     describe('addNewItem method', () => {
       it('return {id: "1", title: "do the task", isDone: false} when "do the task" is passed', () => {
         const MyTaskList = new ToDoList();
@@ -45,7 +46,6 @@ describe('AppController', () => {
     describe('showTask method', () => {
       it('show list of tasks', () => {
         const MyTaskList = new ToDoList();
-        MyTaskList.addNewItem('do the task');
         expect(MyTaskList.showTaskList()).toEqual([
           {
             id: '1',
@@ -58,7 +58,6 @@ describe('AppController', () => {
     describe('itemWasDone method', () => {
       it('returns appropriate list of object with isDone set to true', () => {
         const MyTaskList = new ToDoList();
-        MyTaskList.addNewItem('do the task');
         MyTaskList.changeDoneStatus('1');
         expect(MyTaskList.showTaskList()).toEqual([
           {
@@ -72,8 +71,6 @@ describe('AppController', () => {
     describe('doneIsNotDone method', () => {
       it('returns appropriate list of object with isDone set to false', () => {
         const myTaskList = new ToDoList();
-        myTaskList.addNewItem('do the task');
-        myTaskList.changeDoneStatus('1');
         myTaskList.changeDoneStatus('1');
 
         expect(myTaskList.showTaskList()).toEqual([
@@ -88,7 +85,6 @@ describe('AppController', () => {
     describe('editTask method', () => {
       it('returns appropriate list of object with editted task name', () => {
         const myTaskList = new ToDoList();
-        myTaskList.addNewItem('do the task');
         myTaskList.editItem('1', 'do not do the task');
         expect(myTaskList.showTaskList()).toEqual([
           {

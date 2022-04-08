@@ -3,6 +3,14 @@ import { IToDoItem } from 'interfaces/ToDoList';
 
 let db: IToDoItem[] = [];
 export class ToDoList {
+  index: number;
+  constructor() {
+    this.index = 0;
+  }
+  updateIndex() {
+    this.index++;
+    return this.index.toString();
+  }
   removeTask(id: string) {
     db = db.filter((task) => task.id !== id);
   }
@@ -32,7 +40,7 @@ export class ToDoList {
     if (title.length < 1)
       return { statusCode: 500, msg: 'give me a name of the task' };
     const newTask = {
-      id: '1',
+      id: this.updateIndex(),
       title,
       isDone: false,
     };
