@@ -3,10 +3,10 @@ import uniqid from 'uniqid';
 
 const db = [];
 
-class ToDoList {
+export class ToDoList {
   addNewItem(title: string): IToDoList {
     return {
-      id: uniqid(),
+      id: '1',
       title,
       isDone: false,
     };
