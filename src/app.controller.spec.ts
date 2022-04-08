@@ -98,6 +98,15 @@ describe('AppController', () => {
           },
         ]);
       });
+      it('returns error message where empty string is passed', () => {
+        const myTaskList = new ToDoList();
+        myTaskList.addNewItem('do the task');
+        myTaskList.editItem('1', '');
+        expect(myTaskList.editItem('1', '')).toEqual({
+          statusCode: 500,
+          msg: 'give me a new name for a task',
+        });
+      });
     });
   });
 });
