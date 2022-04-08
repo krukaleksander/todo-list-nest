@@ -9,7 +9,6 @@ export class ToDoList {
   }
   updateIndex() {
     this.index++;
-    return this.index.toString();
   }
   removeTask(id: string) {
     db = db.filter((task) => task.id !== id);
@@ -39,12 +38,16 @@ export class ToDoList {
   addNewItem(title: string) {
     if (title.length < 1)
       return { statusCode: 500, msg: 'give me a name of the task' };
+    this.updateIndex();
     const newTask = {
-      id: this.updateIndex(),
+      id: this.index.toString(),
       title,
       isDone: false,
     };
     db.push(newTask);
     return this;
+  }
+  showDone(filter: boolean) {
+    return db;
   }
 }
