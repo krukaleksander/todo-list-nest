@@ -1,4 +1,3 @@
-import { IErrorMsg } from 'interfaces/ErrorMsg';
 import { IToDoItem } from 'interfaces/ToDoList';
 
 let db: IToDoItem[] = [];
