@@ -37,5 +37,16 @@ describe('AppController', () => {
         msg: 'give me a name of the task',
       });
     });
+
+    describe('showTaskMethod', () => {
+      it('show list of tasks', () => {
+        const MyTaskList = new ToDoList();
+        MyTaskList.addNewItem('do the task');
+        expect(MyTaskList.showTaskList()).toEqual({
+          statusCode: 500,
+          msg: 'give me a name of the task',
+        });
+      });
+    });
   });
 });
