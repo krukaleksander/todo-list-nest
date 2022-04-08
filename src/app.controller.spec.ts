@@ -22,23 +22,24 @@ describe('AppController', () => {
   });
 
   describe('ToDoList', () => {
-    it('return {id: "1", title: "do the task", isDone: false} when "do the task" is passed', () => {
-      const MyTaskList = new ToDoList();
-      expect(MyTaskList.addNewItem('do the task')).toEqual({
-        id: '1',
-        title: 'do the task',
-        isDone: false,
+    describe('addNewItem method', () => {
+      it('return {id: "1", title: "do the task", isDone: false} when "do the task" is passed', () => {
+        const MyTaskList = new ToDoList();
+        expect(MyTaskList.addNewItem('do the task')).toEqual({
+          id: '1',
+          title: 'do the task',
+          isDone: false,
+        });
+      });
+      it('return {statusCode: 500, msg: "give me a name of the task"} when empty string passed', () => {
+        const MyTaskList = new ToDoList();
+        expect(MyTaskList.addNewItem('')).toEqual({
+          statusCode: 500,
+          msg: 'give me a name of the task',
+        });
       });
     });
-    it('return {statusCode: 500, msg: "give me a name of the task"} when empty string passed', () => {
-      const MyTaskList = new ToDoList();
-      expect(MyTaskList.addNewItem('')).toEqual({
-        statusCode: 500,
-        msg: 'give me a name of the task',
-      });
-    });
-
-    describe('showTaskMethod', () => {
+    describe('showTask msethod', () => {
       it('show list of tasks', () => {
         const MyTaskList = new ToDoList();
         MyTaskList.addNewItem('do the task');
@@ -47,6 +48,19 @@ describe('AppController', () => {
             id: '1',
             title: 'do the task',
             isDone: false,
+          },
+        ]);
+      });
+    });
+    describe('itemWasDone method', () => {
+      it('returns appropriate object with isDone set to true', () => {
+        const MyTaskList = new ToDoList();
+        MyTaskList.addNewItem('do the task');
+        expect(MyTaskList.itemWasDone()).toEqual([
+          {
+            id: '1',
+            title: 'do the task',
+            isDone: true,
           },
         ]);
       });
