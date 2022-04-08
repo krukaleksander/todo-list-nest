@@ -3,10 +3,10 @@ import { IToDoItem } from 'interfaces/ToDoList';
 
 let db: IToDoItem[] = [];
 export class ToDoList {
-  itemWasDone(id: string) {
+  changeDoneStatus(id: string) {
     db = db.map((task) => {
-      const { id, title } = task;
-      if (task.id === id) return { id, title, isDone: true };
+      const { id, title, isDone } = task;
+      if (task.id === id) return { id, title, isDone: !isDone };
       return task;
     });
     return this;

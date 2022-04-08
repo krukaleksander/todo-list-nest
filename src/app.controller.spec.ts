@@ -59,7 +59,7 @@ describe('AppController', () => {
       it('returns appropriate list of object with isDone set to true', () => {
         const MyTaskList = new ToDoList();
         MyTaskList.addNewItem('do the task');
-        MyTaskList.itemWasDone('1');
+        MyTaskList.changeDoneStatus('1');
         expect(MyTaskList.showTaskList()).toEqual([
           {
             id: '1',
@@ -71,10 +71,12 @@ describe('AppController', () => {
     });
     describe('doneIsNotDone method', () => {
       it('returns appropriate list of object with isDone set to false', () => {
-        const MyTaskList = new ToDoList();
-        MyTaskList.addNewItem('do the task');
-        MyTaskList.doneIsNotDone('1');
-        expect(MyTaskList.showTaskList()).toEqual([
+        const myTaskList = new ToDoList();
+        myTaskList.addNewItem('do the task');
+        myTaskList.changeDoneStatus('1');
+        myTaskList.changeDoneStatus('1');
+
+        expect(myTaskList.showTaskList()).toEqual([
           {
             id: '1',
             title: 'do the task',
