@@ -15,12 +15,6 @@ describe('AppController', () => {
     appController = app.get<AppController>(AppController);
   });
 
-  describe.skip('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
-    });
-  });
-
   describe('ToDoList', () => {
     let myTaskList;
     beforeEach(() => {
@@ -112,8 +106,7 @@ describe('AppController', () => {
       it('returns undone tasks', () => {
         myTaskList.addNewItem('second task');
         myTaskList.addNewItem('third task');
-        myTaskList.showDone(false);
-        expect(myTaskList.showTaskList()).toEqual([
+        expect(myTaskList.showDone(false)).toEqual([
           {
             id: '1',
             title: 'second task',
@@ -123,6 +116,16 @@ describe('AppController', () => {
             id: '2',
             title: 'third task',
             isDone: false,
+          },
+        ]);
+      });
+      it('returns done tasks', () => {
+        myTaskList.changeDoneStatus('1');
+        expect(myTaskList.showDone(true)).toEqual([
+          {
+            id: '1',
+            title: 'second task',
+            isDone: true,
           },
         ]);
       });

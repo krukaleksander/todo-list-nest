@@ -48,6 +48,6 @@ export class ToDoList {
     return this;
   }
   showDone(filter: boolean) {
-    return db;
+    return db.filter((task) => task.isDone === filter);
   }
 }
