@@ -53,10 +53,11 @@ describe('AppController', () => {
       });
     });
     describe('itemWasDone method', () => {
-      it('returns appropriate object with isDone set to true', () => {
+      it('returns appropriate list of object with isDone set to true', () => {
         const MyTaskList = new ToDoList();
         MyTaskList.addNewItem('do the task');
-        expect(MyTaskList.itemWasDone()).toEqual([
+        MyTaskList.itemWasDone('1');
+        expect(MyTaskList.showTaskList()).toEqual([
           {
             id: '1',
             title: 'do the task',

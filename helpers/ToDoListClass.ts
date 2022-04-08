@@ -1,13 +1,20 @@
 import { IErrorMsg } from 'interfaces/ErrorMsg';
-import { IToDoList } from 'interfaces/ToDoList';
-import uniqid from 'uniqid';
+import { IToDoItem } from 'interfaces/ToDoList';
 
-const db = [];
+let db: IToDoItem[] = [];
 export class ToDoList {
-  showTaskList(): IToDoList[] {
+  itemWasDone(id: string) {
+    db = db.map((task) => {
+      const { id, title } = task;
+      if (task.id === id) return { id, title, isDone: true };
+      return task;
+    });
+    return this;
+  }
+  showTaskList(): IToDoItem[] {
     return db;
   }
-  addNewItem(title: string): IToDoList | IErrorMsg {
+  addNewItem(title: string) {
     if (title.length < 1)
       return { statusCode: 500, msg: 'give me a name of the task' };
     const newTask = {
@@ -16,6 +23,6 @@ export class ToDoList {
       isDone: false,
     };
     db.push(newTask);
-    return newTask;
+    return this;
   }
 }
